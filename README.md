@@ -8,4 +8,4 @@ License
 
 Released under the GPLv3 License.  See the [COPYING][copying] file for further details.
 
-[copying]:   
+[copying]:  ://github.com/chichunchen/Algorithm/blob/master/COPYING 
