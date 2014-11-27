@@ -17,18 +17,12 @@ class Hash {
 	public:
 		Hash();
 		void OpenFile();
+		int hashFunc( int x, int i );
 		void Insert( int key, string word );
 		bool Search( int key, string word );
 		void print_HashTable();
 		bool getFlag() {
 			return flag;
-		}
-		
-		int h1( int key ) {
-			return 1 + (key % (hashTable_Size - 2) );
-		}
-		int h2( int key ){
-			return ( key / hashTable_Size ) % hashTable_Size;
 		}
 };
 
@@ -38,6 +32,8 @@ Hash::Hash() {
 
 	flag = true;
 
+	// if the number of word is different between doc1 and doc2
+	// then the result must be false.
 	if( docSize1 != docSize2 ) {
 		flag = false;
 		return;
@@ -54,22 +50,23 @@ Hash::Hash() {
 		Insert( n, list.at(n) );
 		n++;
 	}
-	//print_HashTable();
+	print_HashTable();
 	//use list2 to serach in hash table
-
+	
 	for( int i = 1; list2.at(i) != ""; i++ ) {
 		if( Search( i, list2.at(i) ) == false ) {
+			cout<<"search false at "<<i<<endl;
 			flag = false;
 			return;
 		}
 	}
-		
+	
 }
 
 void Hash::OpenFile() {
 
     string word, word2;
-    ifstream doc1( "doc1.txt" ), doc2( "doc2.txt" );
+    ifstream doc1( "../testdata/doc1.txt" ), doc2( "../testdata/doc2.txt" );
 
     while( doc1 >> word, doc2 >> word2 ) {
     	list.push_back( word );
@@ -83,36 +80,33 @@ void Hash::OpenFile() {
     docSize2 = atoi( list2.at(0).c_str() );
 }
 
+int Hash::hashFunc( int key, int i ) {
+	return ( key + i ) % hashTable_Size;
+}
+
 // key 就是一個個word出現的順序  i am smart 分別為 key = 0, 1, 2.
 void Hash::Insert( int key, string word ) {
+	int i = 0;
+	int j;
+	do{
+		j = hashFunc( key, i );
+		if( hashTable.at(j) == "" )
+			hashTable[ j ] = word;
+		else i++;
 
-	int hashFunc1 = h1( key );
-	int hashFunc2 = h2( key );
-
-	int hash_value = hashFunc1;
-
-	if( hashTable.at(hash_value) == "" ) {
-		hashTable[hash_value] = word;
-	}
-	else{
-		hash_value += hashFunc2;
-		hash_value %= hashTable_Size;
-
-		while( hashFunc2 < hashTable_Size ) {
-			hash_value += hashFunc2;
-			hash_value %= hashTable_Size;
-		}
-		hashTable[hash_value] = word;	
-	}
+	}while( i == hashTable_Size );
 }
 
 bool Hash::Search( int key, string word ) {
-
-	for( int i = 0; i < hashTable_Size; i++ ) {
-		string value = hashTable.at(i);
-		if( value == word )
+	int i = 0;
+	int j;
+	do{
+		j = hashFunc( key, i );
+		//cout<<"j: "<<j<<endl;
+		if( hashTable.at(j) == word )
 			return true;
-	}
+		i++;
+	} while( hashTable.at(j) == "" || i != hashTable_Size );
 	return false;
 }
 

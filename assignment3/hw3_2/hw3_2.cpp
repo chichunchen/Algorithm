@@ -54,7 +54,7 @@ Hash::Hash() {
 		Insert( n, list.at(n) );
 		n++;
 	}
-	//print_HashTable();
+	print_HashTable();
 	//use list2 to serach in hash table
 
 	for( int i = 1; list2.at(i) != ""; i++ ) {
@@ -69,7 +69,7 @@ Hash::Hash() {
 void Hash::OpenFile() {
 
     string word, word2;
-    ifstream doc1( "doc1.txt" ), doc2( "doc2.txt" );
+    ifstream doc1( "../testdata/doc1.txt" ), doc2( "../testdata/doc2.txt" );
 
     while( doc1 >> word, doc2 >> word2 ) {
     	list.push_back( word );
