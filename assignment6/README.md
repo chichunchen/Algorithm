@@ -1,6 +1,6 @@
 # Programming Assignment #6
 
-## Floyd-Warshall Algorithm
+## [Floyd-Warshall Algorithm](https://github.com/chichunchen/Algorithm/tree/master/assignment6/hw6_1)
 
 Modify the code for Floyd-Warshall so that it prints both a matrix of all shortest path lengths, and predecessors, for all ordered pairs of vertices. In addition to the final matrix, you would print these paths.
 
@@ -49,7 +49,7 @@ You need to print both a matrix of all shortest path lengths, and predecessors, 
     5 to 4: 5->4
 
 
-## Maximum Flow
+## [Maximum Flow](https://github.com/chichunchen/Algorithm/tree/master/assignment6/hw6_2) 
 
 You are the program chair of a conference! Part of your job is to assign papers to reviewers. For example, if you have 6 papers P1, P2, P3, P4, P5, P6 and 3 reviewers R1, R2, R3. Initially, each reviewer constructs a list of papers he is willing to review as followings: R1 = {P1, P3, P5, P6}, R2 = {P1, P2, P4}, R3 = {P1, P2, P3, P4, P5, P6}. An assignment of papers to reviewers is valid if each paper is assigned to at least 2 distinct reviewers that are willing to review that paper. The maximum number of papers assigned to any one reviewers is should not be greater than 4. You would like to maximize the total number of papers which are validly assigned. In this example, maximum number of papers that can be validly assigned is 5. Please implement a program to find maximum number of papers that can be validly assigned. (hint: model this problem using a s-t flow network G = (V, E) (a flow network with capacity labeling).
 
