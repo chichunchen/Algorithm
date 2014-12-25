@@ -1,9 +1,7 @@
-Introduction to Algorithm.
+Introduction to Algorithm
 ====================================
-
 The assignments for the course DCP1208 in NCTU, Introduction to Algorithm programming homework.
 
-Click [here](http://chichunchen.github.io/Algorithm/) to download all the source file. 
 
 License
 ====================================
